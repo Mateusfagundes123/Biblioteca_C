@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "menus.h"
 
 void menu_principal(){
     printf("--- Biblioteca ---\n");
