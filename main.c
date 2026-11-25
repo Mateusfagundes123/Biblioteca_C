@@ -38,7 +38,7 @@ int main(){
                 }
                 else if(valor_cadastro == 2){
                     Usuario user;
-                    user = CreateUsuario();
+                    user = CreateUsuario(&Gerente_usuarios);
                     InsertList(&Gerente_usuarios , user);
                     break;
                 }

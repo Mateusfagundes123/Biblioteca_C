@@ -53,11 +53,31 @@ void Listar_Lista_Usuarios(Sent_Usuarios *s){
 
 }
 
-Usuario CreateUsuario(){
+
+Usuario CreateUsuario(Sent_Usuarios *s){
     Usuario usuario; 
+    char email[100];
     printf("-- Cadastro de Usuario --\n");
-    printf("| Email: ");
-    scanf("%s", usuario.email);
+    while (1) {
+        printf("| Email: ");
+        if (scanf("%s", usuario.email) != 1){
+            return usuario;
+        }
+
+        List_Usuarios *aux;
+        for (aux = s->First; aux != NULL; aux = aux->Next) {
+            if (strcmp(aux->info.email, usuario.email) == 0) {
+                break;
+            }
+        }
+
+        if (aux == NULL) {
+            break;
+        }
+
+        printf("Email ja cadastrado. Digite outro.\n");
+    }
+
     printf("\n| Nome: ");
     scanf("%s", usuario.nome);
     return usuario;
