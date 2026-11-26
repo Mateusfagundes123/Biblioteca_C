@@ -2,7 +2,7 @@
 #include "menus.h"
 
 void menu_principal(){
-    printf("--- Biblioteca ---\n");
+    printf("\n--- Biblioteca ---\n");
     printf("| 1 - Cadastro    |\n");
     printf("| 2 - Consulta    |\n");
     printf("| 3 - Atualização |\n");
@@ -28,6 +28,12 @@ void menu_consulta(){
     printf("| 3 - Empréstimo |\n");
     printf("| 0 - Voltar     |\n");
     printf("-------------------\n");
+}
+
+void consulta_livro(){
+    printf(" -- consultar -- \n");
+    printf(" 1 - Código \n");
+    printf(" 2 - Autor \n");
 }
 
 void menu_atualizacao(){

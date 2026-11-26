@@ -5,6 +5,8 @@ gcc -Wall -Wextra -g3 main.c Menu/menus.c -o programa.exe
 
 */
 
+
+
 #include <stdio.h>
 #include <locale.h>
 #include <windows.h> 
@@ -40,6 +42,7 @@ int main(){
                     Livro book;
                     book = CreateLivro(&Gerente_Livros);
                     InsertListLivros(&Gerente_Livros, book);
+                    printf("Livro %s Cadastrado: Código %d \n\n", book.titulo, book.Codigo);
                     break;
                 }
                 else if(valor_cadastro == 2){
@@ -57,6 +60,28 @@ int main(){
                 } 
             case 2: 
                 menu_consulta();
+                int valor_consulta;
+                scanf("%d", &valor_consulta);
+                if(valor_consulta == 1){
+                    consulta_livro();
+                    int valor_consulta_livro;
+                    scanf("%d", &valor_consulta_livro);
+                    if(valor_consulta_livro == 1){
+                        int valor_consulta_codigo;
+                        printf("Qual o código do livro: "); 
+                        scanf("%d", &valor_consulta_codigo);
+                        consulta_livro_codigo(&Gerente_Livros, valor_consulta_codigo);
+                    }
+                    if(valor_consulta_livro == 2){
+                        char autor_informado[100];
+                        printf("Qual autor do livro: ");
+                        scanf("%s", autor_informado);
+                        consulta_livro_autor(&Gerente_Livros, autor_informado);
+                    }
+                }
+
+
+
                 break;
             case 3:
                 menu_atualizacao();
