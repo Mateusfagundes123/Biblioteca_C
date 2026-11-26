@@ -12,14 +12,17 @@ gcc -Wall -Wextra -g3 main.c Menu/menus.c -o programa.exe
 #include "Menu/menus.h"
 
 #include "Estruturas/Usuario.c"
-#include "Estruturas/Livro.c"
+#include "Estruturas/Livros.c"
 
 
 int main(){
     SetConsoleOutputCP(CP_UTF8);  // para imprimir caracteres especiais
 
     Sent_Usuarios Gerente_usuarios;
-    iniciar_lista(&Gerente_usuarios);
+    iniciar_lista_usuarios(&Gerente_usuarios);
+
+    Sent_Livros Gerente_Livros;
+    iniciar_lista_Livros(&Gerente_Livros);
 
 
     int valor_do_menu; 
@@ -34,12 +37,15 @@ int main(){
                 scanf("%d", &valor_cadastro);
 
                 if(valor_cadastro == 1){
+                    Livro book;
+                    book = CreateLivro(&Gerente_Livros);
+                    InsertListLivros(&Gerente_Livros, book);
                     break;
                 }
                 else if(valor_cadastro == 2){
                     Usuario user;
                     user = CreateUsuario(&Gerente_usuarios);
-                    InsertList(&Gerente_usuarios , user);
+                    InsertListUsers(&Gerente_usuarios , user);
                     break;
                 }
                 else if(valor_cadastro == 0){
@@ -61,7 +67,8 @@ int main(){
             case 5:
                 Listar_Lista_Usuarios(&Gerente_usuarios);
                 break; 
-            case 6: 
+            case 6:
+                Listar_Lista_Livros(&Gerente_Livros);
                 break; 
         default:
             break;

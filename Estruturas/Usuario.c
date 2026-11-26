@@ -10,17 +10,17 @@ typedef struct TList_Usuarios{
     struct TList_Usuarios *Next;
 }List_Usuarios;
 
-typedef struct SSent{
+typedef struct SSent_Usuarios{
     List_Usuarios *First;
     int qtd_Usuarios;
 }Sent_Usuarios;
 
-void iniciar_lista(Sent_Usuarios *s){
+void iniciar_lista_usuarios(Sent_Usuarios *s){
     s->First = NULL; 
     s->qtd_Usuarios = 0;
 }
 
-void InsertList(Sent_Usuarios *s, Usuario usuario){
+void InsertListUsers(Sent_Usuarios *s, Usuario usuario){
     List_Usuarios *ls; 
     ls = (List_Usuarios *)malloc(sizeof(List_Usuarios));
     ls->info = usuario;
