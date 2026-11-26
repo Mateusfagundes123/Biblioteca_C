@@ -81,3 +81,34 @@ Usuario CreateUsuario(Sent_Usuarios *s){
     scanf("%s", usuario.nome);
     return usuario;
 }
+
+
+void consulta_usuario_email(Sent_Usuarios *s, char *valor_consulta_email){
+    if(s->First == NULL){
+        printf("Lista Vazia! ");
+        return;
+    }
+    for (List_Usuarios *aux = s->First; aux != NULL; aux = aux->Next) {
+        if(strcmp(aux->info.email , valor_consulta_email) == 0){
+            printf("------- Usuarios -------\nEmail: %s \nNome: %s \n", aux->info.email, aux->info.nome);
+            return;
+        }
+    }
+    printf("Usuario não encontrado");
+    return;
+}
+
+void consulta_usuario_nome(Sent_Usuarios *s, char *autor_informado){
+    if(s->First == NULL){
+        printf("Lista Vazia! ");
+        return;
+    }
+    for (List_Usuarios *aux = s->First; aux != NULL; aux = aux->Next) {
+        if(strcmp(aux->info.email , autor_informado) == 0){
+        printf("------- Usuario -------\nEmail: %s \nNome: %s \n", aux->info.email, aux->info.nome);
+            return;
+        }
+    }
+    printf("Usuario não encontrado");
+    return;
+}

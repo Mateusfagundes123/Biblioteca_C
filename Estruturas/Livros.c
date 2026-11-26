@@ -99,7 +99,7 @@ void consulta_livro_autor(Sent_Livros *s, char *autor_informado){
     }
     List_Livros *aux = s->First;
     while(aux != NULL){
-        if (strcmp(aux->info.autor, autor_informado) == 0) {
+        if (strcmp(aux->info.autor, autor_informado) == 0) { // usado ia para entender como funciona o strcmp
             printf("Título: %s\nAutor: %s\nAno de publicação: %d\nCódigo: %d\nStatus: %d\nE-mail do usuário: %s\n\n", aux->info.titulo, aux->info.autor, aux->info.ano_de_publicacao, aux->info.Codigo, aux->info.Status, aux->info.email_usuario);
             cont++;
         }

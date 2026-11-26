@@ -79,9 +79,23 @@ int main(){
                         consulta_livro_autor(&Gerente_Livros, autor_informado);
                     }
                 }
-
-
-
+                if(valor_consulta == 2){
+                    consulta_usuario();
+                    int valor_consulta_usuario;
+                    scanf("%d", &valor_consulta_usuario);
+                    if(valor_consulta_usuario == 1){
+                        char valor_consulta_email[100];
+                        printf("Qual o email do Usuario: "); 
+                        scanf("%s", valor_consulta_email);
+                        consulta_usuario_email(&Gerente_usuarios, valor_consulta_email);
+                    }
+                    if(valor_consulta_usuario == 2){
+                        char nome_informado[100];
+                        printf("Qual nome do usuario: ");
+                        scanf("%s", nome_informado);
+                        consulta_usuario_nome(&Gerente_usuarios, nome_informado);
+                    }
+                }
                 break;
             case 3:
                 menu_atualizacao();

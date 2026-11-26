@@ -36,6 +36,12 @@ void consulta_livro(){
     printf(" 2 - Autor \n");
 }
 
+void consulta_usuario(){
+    printf(" -- consultar -- \n");
+    printf(" 1 - Email \n");
+    printf(" 2 - Nome \n");
+}
+
 void menu_atualizacao(){
     printf("-- atualizar ---\n");
     printf("| 1 - Livro    |\n");
