@@ -4,8 +4,8 @@
 typedef struct TLivro{
     char titulo[50];
     char autor[50]; 
-    char ano_de_publicacao[50];
-    char Codigo[50];
+    int ano_de_publicacao;
+    int Codigo;
     int Status; 
     char email_usuario[50];
 }Livro;
@@ -52,35 +52,43 @@ void Listar_Lista_Livros(Sent_Livros *s){
         printf("Lista Vazia! ");
         return;
     }
-    for(List_Livros *aux = s->First; aux != NULL; aux = aux->Next){
-        printf("------- Usuarios -------\nTítulo: %s \nAutor: %s \n", aux->info.titulo, aux->info.autor);
-    }
+    printf("------- Livros -------\n");
 
+    for (List_Livros *aux = s->First; aux != NULL; aux = aux->Next) {
+        printf("Título: %s\nAutor: %s\nAno de publicação: %d\nCódigo: %d\nStatus: %d\nE-mail do usuário: %s\n\n", aux->info.titulo, aux->info.autor, aux->info.ano_de_publicacao, aux->info.Codigo, aux->info.Status, aux->info.email_usuario);
+    }
+}
+
+int gerador_id_livro(Sent_Livros *s){
+    int id;
+    if(s->First == NULL)
+        return 1; 
+    List_Livros *aux = s->First; 
+    while(aux->Next != NULL)
+        aux = aux->Next;
+    id = aux->info.Codigo + 1;
+    return id;
 }
 
 
 
 Livro CreateLivro(Sent_Livros *s){
     Livro livro; 
-    char titulo[100];
     printf("-- Cadastro de Livro --\n");
     printf("| Titulo: ");
-    scanf("%s", livro.titulo);
+    scanf("%49s", livro.titulo);
 
     printf("| Autor: ");
-    scanf("%s", livro.autor);
+    scanf("%49s", livro.autor);
 
     printf("| Ano de publicação: ");
-    scanf("%s", livro.ano_de_publicacao);
+    scanf("%d", &livro.ano_de_publicacao);
 
-
-    printf("| Código: ");
-    scanf("%s" ,livro.Codigo);
-
+    livro.Codigo = gerador_id_livro(s);
     livro.Status = 0;
 
     printf("| email do usuário: ");
-    scanf("%s" ,livro.email_usuario);
+    scanf("%49s", livro.email_usuario);
 
     return livro;
 }

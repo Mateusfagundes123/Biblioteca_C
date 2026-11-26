@@ -56,7 +56,6 @@ void Listar_Lista_Usuarios(Sent_Usuarios *s){
 
 Usuario CreateUsuario(Sent_Usuarios *s){
     Usuario usuario; 
-    char email[100];
     printf("-- Cadastro de Usuario --\n");
     while (1) {
         printf("| Email: ");
