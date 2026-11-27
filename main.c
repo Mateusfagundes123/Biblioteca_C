@@ -5,8 +5,6 @@ gcc -Wall -Wextra -g3 main.c Menu/menus.c -o programa.exe
 
 */
 
-
-
 #include <stdio.h>
 #include <locale.h>
 #include <windows.h> 
@@ -111,22 +109,37 @@ int main(){
             case 5: {
                 int codigo_livro;
                 printf("Qual o código do livro a emprestar: ");
-                if (scanf("%d", &codigo_livro) == 1) {
+                if (scanf("%d", &codigo_livro) == 1) { // assim garante que a leitura deu certo. 
                     Create_e_Insert_emprestimo(codigo_livro, &Gerente_Livros, &Gerente_usuarios, &Gerente_emprestimo);
                 } else {
                     int caractere;
                     printf("Código inválido.\n");
+                    while ((caractere = getchar()) != '\n' && caractere != EOF) {
+                    }
                 }
                 break; 
             }
 
-            case 6:
+            case 6: {
+                int codigo_livro;
+                printf("Qual o código do livro a devolver: ");
+                if (scanf("%d", &codigo_livro) == 1) {
+                    devolver_livro_emprestado(codigo_livro, &Gerente_Livros, &Gerente_emprestimo);
+                } else {
+                    printf("Código inválido.\n");
+                }
                 break;
+            }
+
+            
             case 99: 
                 Listar_Lista_Usuarios(&Gerente_usuarios);
                 break;
             case 98: 
                 Listar_Lista_Livros(&Gerente_Livros);
+                break;
+            case 97: 
+                Listar_Lista_Emprestimos(&Gerente_emprestimo);
                 break;
 
         default:

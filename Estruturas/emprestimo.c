@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "Estruturas/Usuario.c"
 #include "Estruturas/Livros.c"
 
@@ -72,4 +73,58 @@ int Create_e_Insert_emprestimo(int codigoLivro, Sent_Livros *livros, Sent_Usuari
 
     printf("Empréstimo registrado para o livro %d.\n", codigoLivro);
     return 1;
+}
+
+int devolver_livro_emprestado(int codigoLivro, Sent_Livros *livros, Sent_Emprestimo *emprestimos){
+    List_Livros *livro = livros->First;
+    while (livro != NULL && livro->info.Codigo != codigoLivro) {
+        livro = livro->Next;
+    }
+
+    if (livro == NULL) {
+        printf("Livro não encontrado.\n");
+        return 0;
+    }
+
+    if (livro->info.Status != 1) {
+        printf("O livro não estava emprestado.\n");
+        return 0;
+    }
+
+    List_Emprestimo *anterior = NULL;
+    List_Emprestimo *emprestimo = emprestimos->First;
+    while (emprestimo != NULL && emprestimo->info.codigoLivro != codigoLivro) {
+        anterior = emprestimo;
+        emprestimo = emprestimo->Next;
+    }
+
+    if (emprestimo != NULL) {
+        if (anterior == NULL) {
+            emprestimos->First = emprestimo->Next;
+        } else {
+            anterior->Next = emprestimo->Next;
+        }
+        free(emprestimo);
+        emprestimos->qtd_Emprestimos--;
+    }
+
+    livro->info.Status = 0;
+    livro->info.email_usuario[0] = '\0';
+
+    printf("Livro %d devolvido com sucesso.\n", codigoLivro);
+    return 1;
+}
+
+
+
+void Listar_Lista_Emprestimos(Sent_Emprestimo *s){
+    if(s->First == NULL){
+        printf("Lista Vazia! ");
+        return;
+    }
+    printf("------- Emprestimos -------\n");
+
+    for (List_Emprestimo *aux = s->First; aux != NULL; aux = aux->Next) {
+        printf("Código do livro: %d\nEmail Usuario: %s\n", aux->info.codigoLivro, aux->info.emailUsuario);
+    }
 }
