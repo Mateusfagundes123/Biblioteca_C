@@ -15,6 +15,8 @@ gcc -Wall -Wextra -g3 main.c Menu/menus.c -o programa.exe
 
 #include "Estruturas/Usuario.c"
 #include "Estruturas/Livros.c"
+#include "Estruturas/emprestimo.c"
+
 
 
 int main(){
@@ -25,6 +27,9 @@ int main(){
 
     Sent_Livros Gerente_Livros;
     iniciar_lista_Livros(&Gerente_Livros);
+
+    Sent_Emprestimo Gerente_emprestimo;
+    iniciar_lista_emprestimos(&Gerente_emprestimo);
 
 
     int valor_do_menu; 
@@ -103,12 +108,27 @@ int main(){
             case 4: 
                 menu_exclusao();
                 break; 
-            case 5:
-                Listar_Lista_Usuarios(&Gerente_usuarios);
+            case 5: {
+                int codigo_livro;
+                printf("Qual o código do livro a emprestar: ");
+                if (scanf("%d", &codigo_livro) == 1) {
+                    Create_e_Insert_emprestimo(codigo_livro, &Gerente_Livros, &Gerente_usuarios, &Gerente_emprestimo);
+                } else {
+                    int caractere;
+                    printf("Código inválido.\n");
+                }
                 break; 
+            }
+
             case 6:
+                break;
+            case 99: 
+                Listar_Lista_Usuarios(&Gerente_usuarios);
+                break;
+            case 98: 
                 Listar_Lista_Livros(&Gerente_Livros);
-                break; 
+                break;
+
         default:
             break;
         }

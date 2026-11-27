@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // estrutura ----------------------------------------------
 
@@ -9,7 +10,7 @@ typedef struct TLivro{
     int ano_de_publicacao;
     int Codigo;
     int Status; 
-    char email_usuario[50];
+    char email_usuario[100];
 }Livro;
 
 typedef struct TList_Livros{
@@ -56,8 +57,7 @@ Livro CreateLivro(Sent_Livros *s){
     livro.Codigo = gerador_id_livro(s);
     livro.Status = 0;
 
-    printf("| email do usuário: ");
-    scanf("%49s", livro.email_usuario);
+    livro.email_usuario[0] = '\0';
 
     return livro;
 }
@@ -109,6 +109,12 @@ void consulta_livro_autor(Sent_Livros *s, char *autor_informado){
         printf("Livro não encontrado");
     return;
 }
+
+
+
+// --------------------------------------------
+
+
 
 
 
