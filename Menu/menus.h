@@ -8,6 +8,7 @@ void consulta_livro(void);
 void consulta_usuario(void);
 void menu_atualizacao(void);
 void menu_exclusao(void);
+void exclusao_livro(void);
 
 #endif 
 

@@ -112,8 +112,38 @@ void consulta_livro_autor(Sent_Livros *s, char *autor_informado){
 
 
 
-// --------------------------------------------
+// delete  --------------------------------------------
 
+
+void exclusao_livro_codigo(Sent_Livros *s, int codigo) {
+    List_Livros *anterior = NULL;
+    List_Livros *atual = s->First;
+
+    while (atual != NULL && atual->info.Codigo != codigo) {
+        anterior = atual;
+        atual = atual->Next;
+    }
+
+    if (atual == NULL) {
+        printf("Livro não encontrado.\n");
+        return;
+    }
+
+    if (atual->info.Status != 0) {
+        printf("Lvro está emprestado.\n");
+        return;
+    }
+
+    if (anterior == NULL) {
+        s->First = atual->Next;     
+    } else {
+        anterior->Next = atual->Next; 
+    }
+
+    free(atual);
+    s->qtd_Livros--;
+    printf("Livro excluído.\n");
+}
 
 
 

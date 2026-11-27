@@ -58,3 +58,17 @@ void menu_exclusao(){
     printf("----------------\n");
 }
 
+void exclusao_livro(){
+    printf(" -- Excluir -- \n");
+    printf(" 1 - Código \n");
+    printf(" 2 - Autor \n");
+}
+
+void exclusao_usuario(){
+    printf(" -- exclusão -- \n");
+    printf(" 1 - Email \n");
+    printf(" 2 - Nome \n");
+}
+
+
+

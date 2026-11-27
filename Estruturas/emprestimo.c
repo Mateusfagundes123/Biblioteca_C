@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "Estruturas/Usuario.c"
-#include "Estruturas/Livros.c"
-
 // estrutura ----------------------------------------------
 
 typedef struct TEmprestimo{

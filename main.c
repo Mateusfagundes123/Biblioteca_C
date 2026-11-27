@@ -105,6 +105,21 @@ int main(){
                 break;
             case 4: 
                 menu_exclusao();
+                int valor_exclusao;
+                scanf("%d", &valor_exclusao);
+                if(valor_consulta == 1){
+                    exclusao_livro();
+                    int valor_exclusao_livro;
+                    scanf("%d", &valor_exclusao_livro);
+                    if(valor_exclusao_livro == 1){
+                        int valor_exclusao_codigo;
+                        printf("Qual o código do livro: "); 
+                        scanf("%d", &valor_exclusao_codigo);
+                        exclusao_livro_codigo(&Gerente_Livros, valor_exclusao_codigo);
+                    }
+                }
+
+
                 break; 
             case 5: {
                 int codigo_livro;
@@ -131,7 +146,6 @@ int main(){
                 break;
             }
 
-            
             case 99: 
                 Listar_Lista_Usuarios(&Gerente_usuarios);
                 break;
